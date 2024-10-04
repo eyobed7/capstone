@@ -1,0 +1,35 @@
+{% load static %}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <title>Profile</title>
+</head>
+<div class="profile-container">
+    <h1>{{ user.username }}</h1>
+    <p>{{ user.profile.bio }}</p>
+    {% if user.profile.profile_picture %}
+    <div>
+        <h3>Current Profile Picture:</h3>
+        <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" width="150" height="150">
+    </div>
+{% else %}
+    <p>No profile picture uploaded yet.</p>
+{% endif %}
+
+    <h2>Submitted Reviews:</h2>
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <strong>{{ review.movie_title }}</strong>: {{ review.review_content }} ({{ review.rating }}/5)
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body> 
+</html>

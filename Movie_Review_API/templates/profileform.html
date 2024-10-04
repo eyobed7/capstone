@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Form</title>
+    <style>
+        /* Netflix-like dark background */
+        body {
+            background-color: #141414;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main container */
+        form {
+            background-color: #222222;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e50914; /* Netflix Red */
+        }
+
+        /* Input fields */
+        input[type="text"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #ffffff;
+            font-size: 1em;
+            outline: none;
+        }
+
+        /* Submit button styling */
+        input[type="submit"] {
+            width: 100%;
+            background-color: #e50914;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f40612; /* Slightly brighter red on hover */
+        }
+
+        /* Form labels */
+        label {
+            font-size: 1em;
+            color: #b3b3b3;
+        }
+
+        /* Adjust form elements for smaller screens */
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            input[type="submit"] {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

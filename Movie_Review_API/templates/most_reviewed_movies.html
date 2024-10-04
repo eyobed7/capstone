@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Reviewed Movies</title>
+    <link rel="stylesheet" href="{% static 'css/sty.css' %}">
+</head>
+<body>
+    <!-- Menu Bar -->
+    <nav class="menu-bar">
+        <ul>
+            
+            <li><a href="{% url 'profileform' %}">profileform</a></li>
+            <li><a href="{% url 'review-list' %}">Reviews</a></li>
+            <li><a href="{% url 'review-create' %}">review-create</a></li>
+            
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Sidebar -->
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>Recommended Movies</h1>
+            <div class="movie-grid">
+                {% for movie in most_reviewed_movies %}
+                <div class="movie-card">
+                    <img class='movie-card img' src="{{ movie.poster_url }}" alt="{{ movie.movie_title }} Poster" />
+                    <div class="movie-info">
+                        <h2>{{ movie.movie_title }}</h2>
+                        <p>Reviews: {{ movie.review_count }}</p>
+                        <div class="rating">
+                            Rating: {{ movie.rating }} / 5
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>

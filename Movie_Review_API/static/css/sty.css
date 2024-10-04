@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: #e50914;
+}
+
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.movie-card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.movie-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.movie-info p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #aaa;
+}
+
+.rating {
+    font-size: 1rem;
+    color: #f39c12;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .movie-card {
+        width: 150px;
+    }
+
+    .movie-poster {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .movie-card {
+        width: 130px;
+    }
+
+    .movie-poster {
+        height: 180px;
+    }
+}
+.movie-card img {
+    width: 100%; /* Full width of the card */
+    height: 300px; /* Fixed height for all movie cards */
+    object-fit: cover; /* Ensures the image covers the space */
+}
+/* Menu Bar */
+.menu-bar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-bar ul li {
+    float: left;
+}
+
+.menu-bar ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu-bar ul li a:hover {
+    background-color: #111;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    float: left;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar ul li a:hover {
+    color: #007BFF;
+}
+
+
+

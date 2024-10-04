@@ -1,0 +1,96 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #e5e5e5;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Profile container */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Profile title */
+.profile-container h1 {
+    font-size: 36px;
+    color: #e50914;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+/* Profile bio */
+.profile-container p {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #b3b3b3;
+}
+
+/* Profile picture */
+.profile-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e50914;
+    margin-bottom: 20px;
+}
+
+/* Reviews section */
+.profile-container h2 {
+    font-size: 24px;
+    color: #e50914;
+    margin-top: 30px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+/* Review list */
+.profile-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.profile-container ul li {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+/* Review hover effect */
+.profile-container ul li:hover {
+    transform: scale(1.02);
+}
+
+/* Review title and rating */
+.profile-container ul li strong {
+    font-size: 18px;
+    color: #fff;
+}
+
+/* Review content */
+.profile-container ul li {
+    font-size: 16px;
+    color: #b3b3b3;
+}
+
+/* Link buttons, if any */
+a {
+    text-decoration: none;
+    color: #e50914;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
