@@ -1,9 +1,15 @@
-from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.contrib.auth import get_user_model
-from django.forms.widgets import PasswordInput,TextInput,EmailInput
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+# Django imports
+from django import forms  # For creating and handling forms
+from django.contrib.auth.models import User  # Default user model in Django
+from django.core.exceptions import ValidationError  # For handling validation errors in forms
+
+
+# Form widgets for customizing input fields
+from django.forms.widgets import PasswordInput, TextInput, EmailInput  # Custom widgets for form inputs
+
+# Django's built-in authentication form
+from django.contrib.auth.forms import AuthenticationForm  # Default form for handling user authentication
+
 
 User=get_user_model()
 
@@ -22,7 +28,7 @@ class UserRegistrationForm(forms.ModelForm):
 
         if password and password_confirm and password != password_confirm:
             raise ValidationError("Passwords do not match.")
-        
+
 class LoginForm(AuthenticationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}), required=True)
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), required=True)
