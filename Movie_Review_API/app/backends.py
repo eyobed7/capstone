@@ -1,5 +1,7 @@
-from django.contrib.auth.backends import BaseBackend
-from django.contrib.auth import get_user_model
+# Django authentication imports
+from django.contrib.auth.backends import BaseBackend  # Base class for creating custom authentication backends
+from django.contrib.auth import get_user_model  # Function to get the current user model (support for custom user models)
+
 
 User = get_user_model()
 
