@@ -10,16 +10,15 @@ User=get_user_model()
 class ReviewSerializer(serializers.ModelSerializer):
     comments = ReviewCommentSerializer(many=True, read_only=True)
     username = serializers.CharField(source='user.username', read_only=True)  # Access username from the user relationship
-    movie_details = serializers.SerializerMethodField()  # Custom field for movie details
     class Meta:
         model = Review
-        fields = ['id', 'movie_title', 'review_content', 'rating', 'username','movie_details','poster_url','comments']
+        fields = ['id', 'movie_title', 'review_content', 'rating', 'username','poster_url','comments']
         read_only_fields = ['username','comments','poster_url']
 
     def get_movie_details(self, obj):
         # Fetch movie details from OMDb using the movie title from the review
-        return fetch_movie_details(obj.movie_title) 
-      
+        return fetch_movie_details(obj.movie_title)
+
     def validate_rating(self, value):
         """
         Ensure the rating is between 1 and 5.
@@ -38,10 +37,24 @@ class ReviewSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Review Content is required.")
         return data
 
+class ReviewDetailSerializer(serializers.ModelSerializer):
+    comments = ReviewCommentSerializer(many=True, read_only=True)
+    username = serializers.CharField(source='user.username', read_only=True)  # Access username from the user relationship
+    movie_details = serializers.SerializerMethodField()  # Custom field for movie details
+    class Meta:
+        model = Review
+        fields = ['id', 'movie_title', 'review_content', 'rating', 'username','movie_details','poster_url','comments']
+        read_only_fields = ['username','comments','poster_url']
+
+    def get_movie_details(self, obj):
+        # Fetch movie details from OMDb using the movie title from the review
+        return fetch_movie_details(obj.movie_title)
+
+
 def fetch_movie_details(movie_title):
     api_key = '77f03f24'  # OMDb API key
     url = f'http://www.omdbapi.com/?t={movie_title}&apikey={api_key}'
-    
+
     try:
         response = requests.get(url)
         if response.status_code == 200:
@@ -66,7 +79,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])  # Set hashed password
         user.save()
         return user
-    
+
 
 class LikeReviewSerializer(serializers.ModelSerializer):
     total_likes = serializers.IntegerField(source='total_likes', read_only=True)
