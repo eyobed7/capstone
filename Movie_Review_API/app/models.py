@@ -1,8 +1,11 @@
-from django.db import models
-from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator, MaxValueValidator
-from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+# Django imports for models and validation
+from django.db import models  # Base class for defining Django models (database tables)
+from django.core.exceptions import ValidationError  # Used to raise validation errors in custom model methods
+from django.core.validators import MinValueValidator, MaxValueValidator  # Built-in validators for limiting field values
+
+# Django auth imports for custom user models
+from django.contrib.auth.models import AbstractUser, BaseUserManager  # AbstractUser for extending User model, BaseUserManager for custom user manager
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
@@ -41,9 +44,8 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
+
 
 class Review(models.Model):
     movie_title = models.CharField(max_length=255)
@@ -68,9 +70,10 @@ class Review(models.Model):
 
     def total_likes(self):
         return self.liked_by.count()
-    
+
 
 
     def __str__(self):
         return f"{self.movie_title} - {self.user.username}"
-    
+
+
