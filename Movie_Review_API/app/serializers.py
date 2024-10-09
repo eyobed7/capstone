@@ -9,7 +9,9 @@ from django.contrib.auth import get_user_model  # Use get_user_model in case of 
 from reviewcomment.serializers import ReviewCommentSerializer  # Serializer for handling ReviewComment objects
 
 
-import requests
+# Import the requests library
+import requests  # Allows making HTTP requests to interact with external APIs
+
 
 User=get_user_model()
 
