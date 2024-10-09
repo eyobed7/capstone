@@ -1,7 +1,5 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import register_user,my_login
 from django.urls import path
+from .views import register_user,my_login
 from .views import ReviewListView,my_logout,ReviewCommentListView,ReviewCommentCreateView ,ReviewCreateView,update_profile,most_reviewed_movies_view, ReviewDetailView, ReviewUpdateView, ReviewDeleteView ,like_review, unlike_review, MostLikedReviewsView ,profile_view
 
 urlpatterns = [
@@ -22,29 +20,38 @@ urlpatterns = [
 
     # register for the first time
     path('register/', register_user, name='register'),
-    
-    # login for the user 
+
+    # login for the user
     path("login",my_login,name="my_login"),
 
+    # to like a movie based on the review id
     path('reviews/<int:pk>/like/', like_review, name='like-review'),
 
+    # To unlike a movie based on the review id
     path('reviews/<int:pk>/unlike/', unlike_review, name='unlike-review'),
 
-    path('reviews/most-liked/<str:movie_title>/', MostLikedReviewsView.as_view(), name='most-liked-reviews'),
+    # To see the likes of a movie
+    path('reviews/likes/<str:movie_title>/', MostLikedReviewsView.as_view(), name='most-liked-reviews'),
 
+    # To see profile
     path('profile/<str:username>/', profile_view, name='profile'),
 
+    #To create profile or update the existing one
     path('profileform', update_profile, name='profileform'),
-     
+
     # URL for listing comments related to a specific review
     path('reviews/<int:pk>/comments/', ReviewCommentListView.as_view(), name='review-comment-list'),
-    
+
     # URL for creating a new comment for a specific review
     path('reviews/<int:pk>/comments/create/', ReviewCommentCreateView.as_view(), name='review-comment-create'),
 
-    path('most-reviewed/', most_reviewed_movies_view, name='most_reviewed_movies'),
+    # URL for to see the website
+    path('', most_reviewed_movies_view, name='most_reviewed_movies'),
 
+    # URL for logout the user
     path('logout/', my_logout, name='logout'),
 
 ]
+
+
 
