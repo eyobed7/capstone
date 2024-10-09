@@ -1,7 +1,13 @@
-from rest_framework import serializers
-from .models import Review
-from django.contrib.auth import get_user_model
-from reviewcomment.serializers import ReviewCommentSerializer
+# Django REST Framework (DRF) imports
+from rest_framework import serializers  # Import base serializer functionalities from DRF
+
+# Local models and user model import
+from .models import Review  # Import the Review model to be serialized
+from django.contrib.auth import get_user_model  # Use get_user_model in case of custom user model
+
+# Import nested serializers
+from reviewcomment.serializers import ReviewCommentSerializer  # Serializer for handling ReviewComment objects
+
 
 import requests
 
