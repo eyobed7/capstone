@@ -198,7 +198,7 @@ class ReviewListView(generics.ListAPIView):
 class ReviewCreateView(generics.CreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated]
 
     # Fetch movie data from OMDB
     def fetch_movie_data(self, movie_title):
@@ -222,6 +222,9 @@ class ReviewCreateView(generics.CreateAPIView):
         serializer.save(user=self.request.user)
 
     def create(self, request, *args, **kwargs):
+        # Custom message for unauthenticated users
+        if not request.user.is_authenticated:
+            raise PermissionDenied(detail="You must sign up to submit a review.")
         # Handle bulk create if the request data is a list
         if isinstance(request.data, list):
             serializer = self.get_serializer(data=request.data, many=True)
@@ -241,7 +244,7 @@ class ReviewCreateView(generics.CreateAPIView):
 # Retrieve a single review by ID (GET)
 class ReviewDetailView(generics.RetrieveAPIView):
     queryset = Review.objects.all()
-    serializer_class = ReviewDetailSerializer
+    serializer_class = ReviewSerializer
     permission_classes = []
 
 # Update a review by ID (PUT/PATCH)
@@ -283,7 +286,7 @@ class ReviewDeleteView(generics.DestroyAPIView):
 
         # Check if the request user is the creator of the review
         if instance.user != request.user:
-            return Response({"error": "You do not have permission to delete this review."}, status=status.HTTP_403_FORBIDDEN)
+            raise PermissionDenied("You do not have permission to delete this review.")
 
         # Perform the deletion
         self.perform_destroy(instance)
@@ -301,7 +304,6 @@ def register_user(request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            # Return a success response instead of redirecting
-            return Response({"message": "User is created"}, status=status.HTTP_201_CREATED)
-        # Return validation errors if the serializer is not valid
+            # Redirect to the 'reviews' list view after successful registration
+            return redirect('my_login')  # Use the reviews route defined in the router
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
