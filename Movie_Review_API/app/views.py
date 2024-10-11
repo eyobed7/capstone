@@ -244,7 +244,7 @@ class ReviewCreateView(generics.CreateAPIView):
 # Retrieve a single review by ID (GET)
 class ReviewDetailView(generics.RetrieveAPIView):
     queryset = Review.objects.all()
-    serializer_class = ReviewSerializer
+    serializer_class = ReviewDetailSerializer
     permission_classes = []
 
 # Update a review by ID (PUT/PATCH)
